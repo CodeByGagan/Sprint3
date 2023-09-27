@@ -1,5 +1,6 @@
 package com.example.entities;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,29 +9,26 @@ import jakarta.persistence.Id;
 @Entity
 public class Item {
 
-	 @Id
-     @GeneratedValue(strategy= GenerationType.IDENTITY)
-     private Integer id;
-	 
-	 private String name;
-
-     private String description;
-     
-     private Integer price;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String name;
+	private String description;
+	private int price;
 
 	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -50,5 +48,4 @@ public class Item {
 		this.description = description;
 	}
 
-	
 }

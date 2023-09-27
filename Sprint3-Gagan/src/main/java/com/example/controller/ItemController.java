@@ -1,7 +1,8 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entities.Item;
-import com.example.repository.ItemRepo;
 import com.example.service.ItemServices;
 
 @RestController
@@ -19,43 +19,81 @@ public class ItemController {
 
 	@Autowired
 	private ItemServices itemServices;
-	
-	final ItemRepo itemRepo;
 
+	/**
+	 * POST method to create a new item.
+	 *
+	 * @param item The item to be created, provided in the request body.
+	 * @return The created item.
+	 */
 	@PostMapping("/postitem")
 	public Item createItem(@RequestBody Item item) {
 		return itemServices.createItem(item);
 	}
-	
-	public ItemController(@Autowired ItemRepo itemRepo )
-    {
-        this.itemRepo = itemRepo;
-    }
 
-    @GetMapping("/getitem")
-    public Iterable<Item> getItems(){
-        return itemRepo.findAll();
-    }
-    
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteItem(@PathVariable("id") Integer itemId){
-    	itemServices.deleteItem(itemId);
-    	return ResponseEntity.ok("Item Todo deleted successfully!.");
-    }
-    
-    @PutMapping("{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable Integer id, @RequestBody Item itemDetails){
-    	Item updateItem = itemRepo.findById(id).orElseThrow();
-    	
-    	updateItem.setName(itemDetails.getName());
-    	updateItem.setDescription(itemDetails.getDescription());
-    	updateItem.setPrice(itemDetails.getPrice());
-    	
-    	itemRepo.save(updateItem);
-    	
-		return ResponseEntity.ok(updateItem);
-    	 
-    }
-    
+	/**
+	 * GET method to retrieve all items.
+	 *
+	 * @return A list of all items.
+	 */
+	@GetMapping("/getitem")
+	List<Item> getAItems() {
+		return itemServices.getAllItem();
+	}
+
+	/**
+	 * PUT method to update an item by its ID.
+	 *
+	 * @param id The ID of the item to be updated.
+	 * @param i  The updated item data, provided in the request body.
+	 * @return The updated item.
+	 */
+	@PutMapping("/updateitem/{id}")
+	Item updateItem(@PathVariable int id, @RequestBody Item i) {
+		return itemServices.updateItem(id, i);
+	}
+
+	/**
+	 * DELETE method to delete an item by its ID.
+	 *
+	 * @param id The ID of the item to be deleted.
+	 * @return A message indicating the success or failure of the deletion.
+	 */
+	@DeleteMapping("/deleteitem/{id}")
+	public String deleteItem(@PathVariable int id) {
+		return itemServices.deleteItem(id);
+	}
+
+//	final ItemRepo itemRepo;
+
+//	public ItemController(@Autowired ItemRepo itemRepo )
+//    {
+//        this.itemRepo = itemRepo;
+//    }
+
+//    @GetMapping("/getitem")
+//    public Iterable<Item> getItems(){
+//        return itemRepo.findAll();
+//    }
+
+//    @DeleteMapping("{id}")
+//    public ResponseEntity<String> deleteItem(@PathVariable("id") Integer itemId){
+//    	itemServices.deleteItem(itemId);
+//    	return ResponseEntity.ok("Item deleted successfully!.");
+//    }
+
+//    @PutMapping("{id}")
+//    public ResponseEntity<Item> updateItem(@PathVariable Integer id, @RequestBody Item itemDetails){
+//    	Item updateItem = itemRepo.findById(id).orElseThrow();
+//    	
+//    	updateItem.setName(itemDetails.getName());
+//    	updateItem.setDescription(itemDetails.getDescription());
+//    	updateItem.setPrice(itemDetails.getPrice());
+//    	
+//    	itemRepo.save(updateItem);
+//    	
+//		return ResponseEntity.ok(updateItem);
+//    	 
+//    }
+
 }
- 
