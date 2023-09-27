@@ -38,7 +38,7 @@ Before you begin, ensure you have met the following requirements:
 
 2. Navigate to the project directory:
 
-   cd spring-boot-rest-api
+   cd Sprint3
 
 3. Build the project using Maven:
 
@@ -46,7 +46,7 @@ Before you begin, ensure you have met the following requirements:
 
 4. Run the application:
 
-   java -jar target/spring-boot-rest-api-1.0.0.jar
+   java -jar target/Sprint3-1.0.0.jar
 
 ## Usage
 
