@@ -64,36 +64,4 @@ public class ItemController {
 		return itemServices.deleteItem(id);
 	}
 
-//	final ItemRepo itemRepo;
-
-//	public ItemController(@Autowired ItemRepo itemRepo )
-//    {
-//        this.itemRepo = itemRepo;
-//    }
-
-//    @GetMapping("/getitem")
-//    public Iterable<Item> getItems(){
-//        return itemRepo.findAll();
-//    }
-
-//    @DeleteMapping("{id}")
-//    public ResponseEntity<String> deleteItem(@PathVariable("id") Integer itemId){
-//    	itemServices.deleteItem(itemId);
-//    	return ResponseEntity.ok("Item deleted successfully!.");
-//    }
-
-//    @PutMapping("{id}")
-//    public ResponseEntity<Item> updateItem(@PathVariable Integer id, @RequestBody Item itemDetails){
-//    	Item updateItem = itemRepo.findById(id).orElseThrow();
-//    	
-//    	updateItem.setName(itemDetails.getName());
-//    	updateItem.setDescription(itemDetails.getDescription());
-//    	updateItem.setPrice(itemDetails.getPrice());
-//    	
-//    	itemRepo.save(updateItem);
-//    	
-//		return ResponseEntity.ok(updateItem);
-//    	 
-//    }
-
 }
