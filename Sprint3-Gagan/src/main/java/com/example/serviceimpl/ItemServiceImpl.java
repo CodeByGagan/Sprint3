@@ -65,10 +65,4 @@ public class ItemServiceImpl implements ItemServices {
 		return "Item deleted successfully.";
 	}
 
-//	@Override
-//	public void deleteItem(int id) {
-//		Optional<Item> item = itemRepo.findById(id);
-//		itemRepo.deleteById(id);
-//	}
-
 }
